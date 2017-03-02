@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Postcode Information Form</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Postcode Information Form</h1>
+<form action="#" th:action="@{/postcode}" method="post">
+    <p>Enter postcode: <input type="text" id = "postcode" name="postcode"/></p>
+    <p><input type="submit" value="Submit" /><input type="reset" value="Reset" /></p>
+</form>
+
+Postcode entered: <b th:text="${postcode}">No value entered</b>
+
+<th:block th:if="${isValidPostcode}">
+    The street is: <b th:text="${street}"></b>
+
+    <p>Address(es) on this street</p>
+    <br th:each="address : ${postcodeResponse}"
+       th:text="${address.summaryline}">Address Summaryline</br>
+
+</th:block>
+
+<th:block th:unless="${isValidPostcode}">
+    This is not a valid postcode
+</th:block>
+
+</body>
+</html>
